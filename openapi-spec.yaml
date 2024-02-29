@@ -4,7 +4,7 @@ info:
   description: API for sending and receiving chat messages
   version: "1.0.0"
 servers:
-  - url: http://localhost:3001
+  - url: http://localhost:3000
 paths:
   /api/chat:
     post:
