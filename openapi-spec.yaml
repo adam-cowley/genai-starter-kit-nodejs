@@ -1,0 +1,48 @@
+openapi: "3.0.0"
+info:
+  title: Chat API
+  description: API for sending and receiving chat messages
+  version: "1.0.0"
+servers:
+  - url: http://localhost:3001
+paths:
+  /api/chat:
+    post:
+      summary: Send a chat message
+      description: Sends a chat message and receives a response.
+      operationId: sendChatMessage
+      tags:
+        - chat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  description: The chat message to send
+      responses:
+        '201':
+          description: A chat message response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The chat message response
+        '401':
+          description: Unauthorized. Invalid session ID or not provided.
+      security:
+        - bearer: []
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      description: Basic Authentication with session ID as the password.
